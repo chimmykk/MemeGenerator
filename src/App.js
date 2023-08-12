@@ -1,53 +1,72 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 
-function ReactAppWithIframe() {
-  const iframeRef = useRef(null);
+function App() {
+  const [imageNumber, setImageNumber] = useState(1000);
+  const [mergedImageUrl, setMergedImageUrl] = useState('');
+  const [ethereumAddress, setEthereumAddress] = useState('');
 
-  // Function to handle messages received from the iframe
-  function handleMessageFromIframe(event) {
-    // Make sure to check the origin to prevent accepting messages from untrusted sources
-    if (event.origin === 'http://localhost:3001') {
-      const { type } = event.data;
-      if (type === 'requestButtonsInfo') {
-        // Get all buttons on the parent page
-        const buttons = Array.from(document.querySelectorAll('button')).map((button) => ({
-          id: button.id,
-          text: button.innerText,
-          disabled: button.disabled,
-        }));
-
-        // Send the buttons information back to the iframe
-        const iframeOrigin = 'http://localhost:3001';
-        const message = { type: 'buttonsInfo', buttons };
-        event.source.postMessage(message, iframeOrigin);
-      }
+  const handleMergeImages = async () => {
+    try {
+      const response = await fetch(`http://localhost:3001/merge?imageNumber=${imageNumber}`);
+      const mergedImageBlob = await response.blob();
+      const mergedImageUrl = URL.createObjectURL(mergedImageBlob);
+      setMergedImageUrl(mergedImageUrl);
+    } catch (error) {
+      console.error('Error merging images:', error);
     }
-  }
+  };
 
-  // Add an event listener to receive messages from the iframe
-  useEffect(() => {
-    window.addEventListener('message', handleMessageFromIframe);
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = mergedImageUrl;
+    link.download = 'merged_image.png'; // You can customize the filename
+    link.click();
+  };
 
-    return () => {
-      // Clean up event listener when component unmounts
-      window.removeEventListener('message', handleMessageFromIframe);
-    };
-  }, []);
+  const handleEthereumAddressChange = (e) => {
+    setEthereumAddress(e.target.value);
+  };
+
+  const handleDropEthereumAddress = () => {
+    // Here you can perform any action you want with the Ethereum address
+    console.log('Dropping Ethereum address:', ethereumAddress);
+  };
 
   return (
-    <div>
-      <h1>So Webpage is the main parent</h1>
+    <div className="App">
+      <h1>Meme-Gen</h1>
+      <label htmlFor="imageNumber">Enter Doge Number:</label>
+      <input
+        type="number"
+        id="imageNumber"
+        min="1"
+        step="1"
+        value={imageNumber}
+        onChange={(e) => setImageNumber(e.target.value)}
+      />
+      <button onClick={handleMergeImages}>MeME it</button>
+      {mergedImageUrl && (
+        <div>
+          <img
+            src={mergedImageUrl}
+            alt="Merged Image"
+            style={{ maxWidth: '40%', marginTop: '20px' }}
+          />
+          <button onClick={handleDownload}>Download Merged Image</button>
+        </div>
+      )}
       <div>
-        {/* Add the ref to the iframe */}
-        <iframe ref={iframeRef} title="Webpage X" src="http://localhost:3001/" width="800" height="600"></iframe>
-        {/* Add buttons on the parent page */}
-        <button id="button1">Button testung</button>
-        <button id="button2">Button </button>
-        
-        {/* Add more buttons as needed */}
+        <label htmlFor="ethereumAddress">Enter Ethereum Address:</label>
+        <input
+          type="text"
+          id="ethereumAddress"
+          value={ethereumAddress}
+          onChange={handleEthereumAddressChange}
+        />
+        <button onClick={handleDropEthereumAddress}>Drop Ethereum Address</button>
       </div>
     </div>
   );
 }
 
-export default ReactAppWithIframe;
+export default App;
