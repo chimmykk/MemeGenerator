@@ -34,7 +34,7 @@ const furImageMapping = {
   'Black': 'https://upcdn.io/W142i9c/raw/background/Black.png',
   'Green':'https://upcdn.io/W142i9c/raw/background/Green.png',
   
-  'Wave':'https://upcdn.io/W142i9c/raw/background/brownish.png'
+  'Wave':'https://upcdn.io/W142i9c/raw/background/Wave.png'
   // to be fix
   
 };
