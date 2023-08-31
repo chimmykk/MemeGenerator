@@ -13,6 +13,7 @@ const API_KEY = '85a320bbc3e447ebb881a2ce01741784'; // Replace this with your ac
 // Mapping of fur values to image URLs
 const furImageMapping = {
   'Alien': 'https://upcdn.io/W142i9c/raw/background/Alien.png',
+  'Chocolate': 'https://upcdn.io/W142i9c/raw/background/Chocolate.png',
   'Black': 'https://upcdn.io/W142i9c/raw/background/Black.png',
   'Giraffe': 'https://upcdn.io/W142i9c/raw/background/Giraffe.png',
   'Gold': 'https://upcdn.io/W142i9c/raw/background/Gold.png',
