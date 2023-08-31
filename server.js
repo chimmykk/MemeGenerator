@@ -12,12 +12,13 @@ const API_KEY = '85a320bbc3e447ebb881a2ce01741784'; // Replace this with your ac
 
 // Mapping of fur values to image URLs
 const furImageMapping = {
+  'Acid':'https://upcdn.io/W142i9c/raw/background/Acid.png',
   'Alien': 'https://upcdn.io/W142i9c/raw/background/Alien.png',
   'Chocolate': 'https://upcdn.io/W142i9c/raw/background/Chocolate.png',
   'Black': 'https://upcdn.io/W142i9c/raw/background/Black.png',
   'Giraffe': 'https://upcdn.io/W142i9c/raw/background/Giraffe.png',
   'Gold': 'https://upcdn.io/W142i9c/raw/background/Gold.png',
-  'Gray': 'https://upcdn.io/W142i9c/raw/background/Grey.png',
+  'Grey': 'https://upcdn.io/W142i9c/raw/background/Grey.png',
   'Iceberg': 'https://upcdn.io/W142i9c/raw/background/Iceberg.png',
   'Original': 'https://upcdn.io/W142i9c/raw/background/Original.png',
   'Pink': 'https://upcdn.io/W142i9c/raw/background/Pink.png',
@@ -33,8 +34,10 @@ const furImageMapping = {
   'Robotic': 'https://upcdn.io/W142i9c/raw/background/Robotic.png',
   'Black': 'https://upcdn.io/W142i9c/raw/background/Black.png',
   'Green':'https://upcdn.io/W142i9c/raw/background/Green.png',
-  
-  'Wave':'https://upcdn.io/W142i9c/raw/background/Wave.png'
+  'Spot': 'https://upcdn.io/W142i9c/raw/background/Spot.png',
+  'Teal': 'https://upcdn.io/W142i9c/raw/background/Teal.png',
+  'Wave':'https://upcdn.io/W142i9c/raw/background/Wave.png',
+  'Cyborg':'https://upcdn.io/W142i9c/raw/background/Cyborg.png',
   // to be fix
   
 };
